@@ -1,16 +1,18 @@
-FONKSİYON SecureCollatz(Seed, Uzunluk):
-    x = Seed
-    K = 0x55555555  (XOR maskesi - sabit)
-    M = 2^64 - 59   (Büyük asal sayı - MOD için)
-    
-    DÖNGÜ Uzunluk kadar:
-        EĞER x çift İSE:
-            x = (x / 2) XOR K
-        DEĞİLSE (x tek ise):
-            x = (3 * x + 1) MOD M
-        
-        x = (x sağa 3 bit kaydır) OR (x sola 61 bit kaydır) // Bit Rotasyonu
-        BİT = x'in en sağındaki bit (x MOD 2)
-        ANAHTAR'a BİT'i ekle
-    SON DÖNGÜ
-    DÖNDÜR ANAHTAR
+ALGORİTMA AdvancedSecureCollatz:
+    GİRDİ: Seed, İstenen_Uzunluk
+    DEĞİŞKENLER: x = Seed, SBox_Tablosu, K_Maskesi, M_Modülü
+
+    FONKSİYON Bit_Uret():
+        EĞER x % 2 == 0 İSE: x = (x / 2) XOR K_Maskesi
+        DEĞİLSE: x = (3 * x + 1) MOD M_Modülü
+        x = Döndür_Sağa(x, 3)
+        nibble = x VE 15
+        x = (x VE (DEĞİL 15)) VEYA SBox_Tablosu[nibble]
+        DÖNDÜR x MOD 2
+
+    ANA DÖNGÜ:
+        b1 = Bit_Uret()
+        b2 = Bit_Uret()
+        EĞER b1 != b2 İSE:
+            Anahtar'a b1 ekle
+        EĞER Uzunluk == İstenen_Uzunluk İSE DUR
