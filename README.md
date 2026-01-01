@@ -1,6 +1,6 @@
 # 🛡️ Secure Collatz-Hybrid PRNG (Sözde Rastgele Sayı Üreteci)
 
-> **Proje Konusu:** Bilgi Sistemleri ve Güvenliği  
+> **Ders:** Bilgi Sistemleri ve Güvenliği  
 > **Geliştirici:** İshak KARATAŞ
 > **Temel Amaç:** Kriptografik prensiplere dayalı, istatistiksel olarak dengeli bir anahtar üretim algoritması tasarlamak.
 
