@@ -1,18 +1,38 @@
-ALGORİTMA AdvancedSecureCollatz:
-    GİRDİ: Seed, İstenen_Uzunluk
-    DEĞİŞKENLER: x = Seed, SBox_Tablosu, K_Maskesi, M_Modülü
+ALGORİTMA Secure_PRNG_Generator
+GİRDİ: Seed (Tohum Değeri)
+ÇIKTI: Binary Anahtar Dizisi
 
-    FONKSİYON Bit_Uret():
-        EĞER x % 2 == 0 İSE: x = (x / 2) XOR K_Maskesi
-        DEĞİLSE: x = (3 * x + 1) MOD M_Modülü
-        x = Döndür_Sağa(x, 3)
-        nibble = x VE 15
-        x = (x VE (DEĞİL 15)) VEYA SBox_Tablosu[nibble]
-        DÖNDÜR x MOD 2
-
-    ANA DÖNGÜ:
-        b1 = Bit_Uret()
-        b2 = Bit_Uret()
-        EĞER b1 != b2 İSE:
-            Anahtar'a b1 ekle
-        EĞER Uzunluk == İstenen_Uzunluk İSE DUR
+BAŞLAT
+    State = Seed
+    Key = Boş Dizi
+    XOR_Mask = 0x5555...
+    
+    DÖNGÜ (Key Uzunluğu < Hedef Uzunluk) SÜRESİNCE:
+        
+        // --- 1. KAOS KATMANI (Collatz) ---
+        EĞER (State % 2 == 0) İSE:
+            State = (State / 2) XOR XOR_Mask
+        DEĞİLSE:
+            State = (3 * State + 1) MOD Büyük_Asal_Sayı
+        
+        // --- 2. YAYILMA KATMANI ---
+        State = Bitwise_Rotate_Left(State) OR Bitwise_Rotate_Right(State)
+        
+        // --- 3. KARIŞTIRMA KATMANI (S-Box) ---
+        Nibble = State AND 0xF
+        Transformed_Bit = SBox_Tablosu[Nibble]
+        
+        // --- 4. FİLTRELEME KATMANI (Von Neumann) ---
+        Bit_A = Bir_Sonraki_Bit_Üret()
+        Bit_B = Bir_Sonraki_Bit_Üret()
+        
+        EĞER (Bit_A == 0 VE Bit_B == 1) İSE:
+            Key'e "0" Ekle
+        EĞER (Bit_A == 1 VE Bit_B == 0) İSE:
+            Key'e "1" Ekle
+        // (0-0 ve 1-1 durumlarında işlem yapılmaz, döngü devam eder)
+        
+    DÖNGÜ BİTİR
+    
+    DÖNDÜR Key
+BİTİR
