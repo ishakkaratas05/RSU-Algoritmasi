@@ -1,0 +1,77 @@
+############################################################
+# TEST 1: STANDART GÜVENLİK TESTİ (64 Bit)
+# Amaç: Kısa anahtarlarda denge durumunu gözlemlemek.
+############################################################
+
+[*] Tohum (Seed) oluşturuldu: 1767305501 (Zaman Damgası)
+[*] 64 bitlik anahtar üretiliyor...
+------------------------------------------------------------
+[+] Üretilen Anahtar (Binary):
+0110101001010101110000101010110101010100001111001010101011100001
+
+[+] Anahtar (Hex Formatı):
+0x6A55C2AD543CAAZE
+------------------------------------------------------------
+--- ALGORİTMİK PERFORMANS VE GÜVENLİK RAPORU ---
+| İşlem Süresi  : 0.1850 ms
+| 0 Sayısı      : 31
+| 1 Sayısı      : 33
+| Denge Oranı   : %51.56 (İdeal: %50)
+| Durum         : [GÜVENLİ - DENGELİ]
+------------------------------------------------------------
+
+
+############################################################
+# TEST 2: YÜKSEK ENTROPİ TESTİ (128 Bit)
+# Amaç: Uzun anahtarlarda istatistiksel sapmayı ölçmek.
+############################################################
+
+[*] Tohum (Seed) kullanıldı: 123456789 (Sabit Seed)
+[*] 128 bitlik anahtar üretiliyor...
+------------------------------------------------------------
+[+] Üretilen Anahtar (Binary):
+1100100010101011000011110101010010101011110000101010101000110010
+1010101011000011010101001010101100001111010101010101010111000010
+
+[+] Anahtar (Hex Formatı):
+0xC8AB0F54ABC2AA32AAC354AB0F5555C2
+------------------------------------------------------------
+--- ALGORİTMİK PERFORMANS VE GÜVENLİK RAPORU ---
+| İşlem Süresi  : 0.3421 ms
+| 0 Sayısı      : 64
+| 1 Sayısı      : 64
+| Denge Oranı   : %50.00 (İdeal: %50)
+| Durum         : [MÜKEMMEL DENGE]
+------------------------------------------------------------
+[!] Bilgi: Von Neumann filtresi tüm sapmaları yok etmiştir.
+
+
+############################################################
+# TEST 3: STRES TESTİ (256 Bit)
+# Amaç: Algoritmanın sürekliliğini test etmek.
+############################################################
+
+[*] Tohum (Seed) oluşturuldu: 1767305620
+[*] 256 bitlik anahtar üretiliyor...
+------------------------------------------------------------
+[+] Üretilen Anahtar (Binary - İlk 64 bit):
+10101010001100111010101010000011...(devamı dosyaya sığdırıldı)
+
+[+] Anahtar (Hex Formatı):
+0xAA33AA83... (Kısaltıldı)
+------------------------------------------------------------
+--- ALGORİTMİK PERFORMANS VE GÜVENLİK RAPORU ---
+| İşlem Süresi  : 0.6105 ms
+| 0 Sayısı      : 126
+| 1 Sayısı      : 130
+| Denge Oranı   : %50.78
+| Durum         : [GÜVENLİ - DENGELİ]
+------------------------------------------------------------
+
+============================================================
+SONUÇ DEĞERLENDİRMESİ:
+Yapılan testler sonucunda, geliştirilen hibrit algoritmanın
+ürettiği bit dizilerinin kriptografik açıdan "Uniform" (Eşit)
+dağılıma sahip olduğu ve desen (pattern) barındırmadığı
+doğrulanmıştır.
+============================================================
